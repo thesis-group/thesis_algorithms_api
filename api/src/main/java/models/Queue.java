@@ -9,7 +9,7 @@ public abstract class Queue {
 
     //FCFS
     static LinkedList<Task> queue = new LinkedList<Task>();
-    static int ptr = -1;
+    public static int ptr = -1;
 
     public static void initQueue(List<Task> initial){
         queue.addAll(initial);
