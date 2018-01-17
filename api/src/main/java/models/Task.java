@@ -9,7 +9,7 @@ public class Task {
     public double lifespan;
     public double RTT;
 
-    public boolean isFailed(){
+    public boolean isOverTime(){
         return RTT > lifespan;
     }
 }

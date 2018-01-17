@@ -53,6 +53,15 @@ public abstract class Queue {
         return RTT;
     }
 
+    /**
+     * 泊松过程模拟任务到达
+     * @return
+     */
+    public static List<Task> taskArrived(){
+        //泊松过程
+        return null;
+    }
+
     public static boolean hasNext(){
         return ptr < queue.size() - 1;
     }

@@ -1,27 +1,45 @@
 package models;
 
+import modules.RL;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdHoc {
 
-    public List<MD> contactList = new ArrayList<MD>();
+    public List<MDSet> contactList = new ArrayList<MDSet>();
 
-    public void refreshContactSet(){
-        //Calculate TCS and reset current contact set
-    };
+    public final static double threshold = 0.3;
 
-    public int getTCSSize(){return contactList.size();}
+    public AdHoc(List<MDSet> contactList){
+        List<MDSet> filtered = new ArrayList<MDSet>();
+        for(MDSet mdSet : contactList){
+            if(canContact(RL.calculateContactRate(mdSet))){
+                filtered.add(mdSet);
+            }
+        }
 
-    public MD selectMD(){
+        this.contactList = filtered;
+
+    }
+
+    public boolean existContactableNodes(){
+        return contactList.size() > 0;
+    }
+
+    public MDSet selectMDSet(){
         if(contactList.size() == 0) return null;
-        MD max = contactList.get(0);
+        MDSet max = contactList.get(0);
 
-        for(MD md : contactList){
-            if(md.capacity > max.capacity) max = md;
+        for(MDSet mdSet : contactList){
+            if(mdSet.md.capacity > max.md.capacity) max = mdSet;
         }
 
         return max;
+    }
+
+    public boolean canContact(double rate){
+        return rate >= threshold;
     }
 
 }

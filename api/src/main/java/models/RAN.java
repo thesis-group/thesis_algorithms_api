@@ -9,7 +9,7 @@ public class RAN {
     //Singleton
     static RAN ran;
 
-    Map<Integer, AP> apMap;
+    Map<Integer, AP> apMap; //默认AP与对应区域编号相同，例如0号AP即表示0号区域
     int[][] apConn;
 
     private RAN(Map<Integer, AP> apMap, int[][] apConn){
